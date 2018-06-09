@@ -1,0 +1,9 @@
+# CLion specific
+.idea/
+
+# Project specific
+build/
+cmake-build-debug/
+node_modules/**/dist/
+
+.lock-waf_linux2_build
