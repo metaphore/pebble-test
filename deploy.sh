@@ -3,8 +3,7 @@
 pebble build
 
 # Install to through the phone to a real watch.
-#export PEBBLE_PHONE=192.168.0.50
-#pebble install -v
+#pebble install -v --phone 192.168.0.123
 
 # Install to the emulator.
 pebble install -v --emulator diorite

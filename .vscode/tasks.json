@@ -1,0 +1,36 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Pebble Build",
+            "command": "pebble build",
+            "type": "shell",
+            "args": [],
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Pebble Install Phone",
+            "command": "pebble install -vvvv --phone 192.168.0.123",
+            "type": "shell",
+            "dependsOn": ["Pebble Build"]
+        },
+        {
+            "label": "Pebble Install",
+            "command": "pebble install -vvvv",
+            "type": "shell",
+            "dependsOn": ["Pebble Build"]
+        },
+        {
+            "label": "Start Pebble emulator",
+            "command": "pebble install -vvvv --emulator diorite",
+            "type": "process"
+        }
+    ]
+}

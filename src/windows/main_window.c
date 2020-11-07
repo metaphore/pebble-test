@@ -3,7 +3,7 @@
 #include <@smallstoneapps/utils/macros.h>
 
 static Window *s_window;
-static TextLayer *textLayer;
+static TextLayer *s_textLayer;
 
 static GFont s_font;
 
@@ -15,21 +15,21 @@ static void on_window_load(Window *window) {
 
     s_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_SUPERSCRIPT_40));
 
-    textLayer = text_layer_create(window_rect);
-    text_layer_set_font(textLayer, s_font);
-    text_layer_set_text_alignment(textLayer, GTextAlignmentCenter);
-    text_layer_set_text_color(textLayer, GColorBlack);
-    text_layer_set_text(textLayer, "13:37");
-    text_layer_set_overflow_mode(textLayer, GTextOverflowModeWordWrap);
+    s_textLayer = text_layer_create(window_rect);
+    text_layer_set_font(s_textLayer, s_font);
+    text_layer_set_text_alignment(s_textLayer, GTextAlignmentCenter);
+    text_layer_set_text_color(s_textLayer, GColorBlack);
+    text_layer_set_text(s_textLayer, "13:37");
+    text_layer_set_overflow_mode(s_textLayer, GTextOverflowModeWordWrap);
 
-    layer_add_child(window_layer, text_layer_get_layer(textLayer));
-    text_layer_enable_screen_text_flow_and_paging(textLayer, 2);
+    layer_add_child(window_layer, text_layer_get_layer(s_textLayer));
+    text_layer_enable_screen_text_flow_and_paging(s_textLayer, 2);
 }
 
 static void on_window_unload(Window *window) {
     DEBUG("MAIN: on_window_unload");
 
-    text_layer_destroy(textLayer);
+    text_layer_destroy(s_textLayer);
     fonts_unload_custom_font(s_font);
 
     window_destroy(s_window);
@@ -39,7 +39,6 @@ static void on_select_click(ClickRecognizerRef recognizer, void *context) {
     DEBUG("MAIN: on_select_click");
 
     window_stack_pop(true);
-
 }
 
 static void click_config_provider(Window *window) {
